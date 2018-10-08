@@ -44,5 +44,9 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~2.9.2"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/glennheckman/swapi.git"
   }
 }
