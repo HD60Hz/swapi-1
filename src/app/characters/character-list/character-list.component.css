@@ -1,0 +1,29 @@
+.characters-list {
+  padding:0 20px;
+}
+
+section button{
+  padding:20px;
+  width:100%;
+  margin:10px 0;
+}
+
+
+.example-card {
+  /* max-width: 250px; */
+  min-width: 250px;
+  margin-bottom:10px;
+}
+.example-header-image {
+  background-image: url('/assets/imgs/starwars_logo.gif');
+  background-size: cover;
+  background-position: center;
+  /* max-width:0px; */
+}
+/*
+div[fxLayoutAlign] {
+  padding:10px;
+  padding-left: 25px;
+  padding-top:15px;
+}
+*/

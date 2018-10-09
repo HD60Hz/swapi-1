@@ -1,0 +1,16 @@
+
+<section *ngIf="character">
+
+  <div>
+    <h2>{{character.name | uppercase}}</h2>
+    <p>Film Appearances:</p>
+    <ul>
+      <li *ngFor="let film of films">
+        {{film.name}}
+      </li>
+    </ul>
+  </div>
+
+  <button (click)="gotoCharacters()">Characters</button>
+
+</section>

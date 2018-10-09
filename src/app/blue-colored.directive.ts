@@ -10,8 +10,13 @@ export class BlueColoredDirective {
     element.nativeElement.style.color = "blue";
   }
 
-  @HostListener('click') doSomething() {
-    alert("it works");
-  }
+  //target:EVENT
+  @HostListener('click',['$event'])
+    elemClicked(elem){
+      console.log('clicked', elem);
+    }
 
+  /*@HostListener('click') doSomething() {
+    alert("it works");
+  }*/
 }
