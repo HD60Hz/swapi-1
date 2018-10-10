@@ -1,16 +1,53 @@
+<div class="character-details" *ngIf="character">
+  <button mat-raised-button color="primary" (click)="gotoCharacters()"><mat-icon>view_module</mat-icon>Back to Characters</button>
 
-<section *ngIf="character">
+  <h1>{{character.name | uppercase}}</h1>
 
-  <div>
-    <h2>{{character.name | uppercase}}</h2>
-    <p>Film Appearances:</p>
-    <ul>
-      <li *ngFor="let film of films">
-        {{film.name}}
-      </li>
-    </ul>
+
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap>
+
+    <section fxLayout.gt-sm="row" fxLayout.xs="column" fxFlex="20%">
+      <div fxLayout="column">
+        <h3>Bio</h3>
+        <mat-divider></mat-divider>
+        <div class="stat"><span>Height:</span> {{character.height}}</div>
+        <div class="stat"><span>Mass:</span> {{character.mass}}</div>
+        <div class="stat"><span>Hair Color:</span> {{character.hair_color}}</div>
+        <div class="stat"><span>Skin Color:</span> {{character.skin_color}}</div>
+        <div class="stat"><span>Eye Color:</span> {{character.eye_color}}</div>
+        <div class="stat"><span>Birth Year:</span> {{character.birth_year}}</div>
+        <div class="stat"><span>Gender:</span> {{character.gender}}</div>
+        <mat-divider></mat-divider>
+        <div class="stat"><span>Home World:</span> {{character.homeworld}}</div>
+    </div>
+    </section>
+
+    <section fxLayout.gt-sm="row" fxLayout.xs="column" fxFlex="80%">
+      <div fxLayout="column">
+        <h3>Filmography ({{character.films.length}})</h3>
+        <mat-divider></mat-divider>
+        <div fxLayout="row wrap" fxLayoutGap="10px">
+          <mat-card class="example-card" *ngFor="let film of character.films" fxFlex>
+            <img class="tmdb-logo" src="https://www.themoviedb.org/assets/1/v4/logos/208x226-stacked-blue-e6df1ff1a41c48555a15336ae8a6b3c6f77dfae41d2a50b78e4794c1ce048792.png" alt="Images powered by TMDB">
+            <mat-card-header>
+              <mat-card-title>{{film.title}}</mat-card-title>
+              <mat-card-subtitle>Released: {{film.release_date | date}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="{{film.poster}}" alt="Film Poster">
+
+            <mat-card-content>
+             <p>{{film.opening_crawl}}</p>
+
+             <img *ngIf="!film.video" mat-card-image src="https://s3.amazonaws.com/bestcoins/ico/no-video.png" alt="Film Poster" class="no-video">
+
+
+             <iframe *ngIf="film.video" [src]="getSafeUrl(film.video)" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+            </mat-card-content>
+
+          </mat-card>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <button (click)="gotoCharacters()">Characters</button>
-
-</section>
+</div>

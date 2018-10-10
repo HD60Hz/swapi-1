@@ -1,9 +1,7 @@
-<header>
-  <div>{{title}}</div>
-
-  <nav>
-    <a routerLink="/characters" routerLinkActive="active">Characters</a>
-    <a routerLink="/films" routerLinkActive="active">Films</a>
-  </nav>
-
-</header>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <div>{{title}}</div>
+    <span class="example-spacer"></span>
+    <span class="author"><a href="mailTo:glenn.heckman@gmail.com?subject=SWAPI Coding Challenge&body=Let's talk!">{{author}}</a></span>
+  </mat-toolbar-row>
+</mat-toolbar>

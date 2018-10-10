@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy, Input } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { CharacterService } from '../character.service';
 import { Character } from '../character';
+import { Observable } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'sw-character-detail',
@@ -10,27 +10,21 @@ import { Character } from '../character';
   styleUrls: ['./character-detail.component.css']
 })
 
-//<sw-character-detail [character]="selectedCharacter"></sw-character-detail>
-
 export class CharacterDetailComponent implements OnInit {
 
-  @Input() character:Character;
-  characters: Character[];
-
+  character: Character;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: CharacterService
+    private _sanitizer: DomSanitizer
   ) {}
 
+  getSafeUrl(film){
+    return this._sanitizer.bypassSecurityTrustResourceUrl(film);
+  }
+
   ngOnInit() {
-    /*this.characters = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.service.getCharacter(params.get('name'))
-      )
-    );*/
-    console.log("Get Films for ", this.character);
-    console.log("Get Films for ", this.characters);
+    this.character = this.route.snapshot.data['character'];
   }
 
   gotoCharacters() {

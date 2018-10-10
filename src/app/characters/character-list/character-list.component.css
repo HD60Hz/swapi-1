@@ -2,6 +2,37 @@
   padding:0 20px;
 }
 
+.character-total {
+  font-size:16px;
+}
+
+.loading{
+  height:100%;
+  width:100%;
+  z-index: 900;
+  background-color: rgba(255,255,255,.8);
+  position: fixed;
+  top:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading div{
+  font-size:24px;
+  color:blue;
+}
+
+
+mat-divider{
+  margin:10px 0;
+}
+
+mat-progress-bar{
+  width:80%;
+  display:block;
+}
+
 section button{
   padding:20px;
   width:100%;
@@ -13,7 +44,14 @@ section button{
   /* max-width: 250px; */
   min-width: 250px;
   margin-bottom:10px;
+  transition: all 0.5s;
 }
+
+mat-card:hover {
+  transform: scale(1.05);
+  cursor:pointer;
+}
+
 .example-header-image {
   background-image: url('/assets/imgs/starwars_logo.gif');
   background-size: cover;

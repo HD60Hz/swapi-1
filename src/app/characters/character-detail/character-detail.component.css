@@ -1,6 +1,54 @@
-section{
+.character-details{
+  padding:50px;
+  font-size:18px;
+}
 
-  border: dashed 1px gray;
-  padding:10px;
+button mat-icon{
+  padding-right:16px;
+}
 
+h1{
+  text-align: center;
+  width:100%;
+}
+
+iframe{
+  width:100%;
+  height:auto;
+}
+
+mat-divider{
+  margin:10px 0;
+}
+
+.no-video{
+  width: 100%;
+  margin: 0 auto;
+}
+
+.tmdb-logo{
+  position: absolute;
+  top:20px;
+  right:10px;
+  width:25px;
+  height:auto;
+}
+.example-card {
+  /* max-width: 250px; */
+  min-width:300px;
+  margin-bottom:10px;
+  transition: all 0.5s;
+  max-width:450px;
+}
+
+.mat-card-content p{
+  line-height:20px;
+}
+
+.stat{
+  padding: 6px 0;
+}
+
+.stat span{
+  font-weight:700;
 }

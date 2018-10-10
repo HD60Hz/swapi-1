@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 })
 
 export class HeaderComponent {
-  title = 'Star Wars';
+  title = 'Star Wars API, Coding Challenge (Angular)';
+  author = 'Glenn Heckman Jr.';
 }
