@@ -6,18 +6,20 @@ header{
   font-size:24px;
 }
 
-header nav {
-  position: absolute;
-  right: 5px;
-  top: 23px
+.mat-toolbar-row{
+  background-color: black;
+  color: white;
 }
 
-header nav a{
-  color:white;
-  padding:18px;
-  font-size:14px;
-  text-transform: uppercase;
-  background-color:gray;
+.mat-toolbar-row a{
+  color: white;
+  text-decoration: none;
+  transition: all .5s;
+}
+
+.mat-toolbar-row a:hover{
+  color: white;
+  letter-spacing: 1px;
 }
 
 .example-spacer {

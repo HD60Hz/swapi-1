@@ -2,8 +2,8 @@
 
 
   <div fxLayout="row wrap">
-    <button fxFlex mat-raised-button [disabled]="!useWeb" (click)="getCharacters('local')">Load from Local</button>
-    <button fxFlex mat-raised-button [disabled]="useWeb" (click)="getCharacters('web')">Load from Web</button>
+    <button class="load-button" fxFlex mat-raised-button [disabled]="!useWeb" (click)="getCharacters('local')">Load from Local</button>
+    <button class="load-button" fxFlex mat-raised-button [disabled]="useWeb" (click)="getCharacters('web')">Load from Web</button>
   </div>
 
   <h2>The Characters</h2>

@@ -4,11 +4,12 @@ import { Character } from './character';
 import { CHARACTERS } from './mock-characters';
 import { HttpModule } from '@angular/http';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, throw, map, retry, mergeMap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { forkJoin } from "rxjs/observable/forkJoin";
 import { _ } from 'underscore';
 
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/forkJoin';
@@ -95,7 +96,6 @@ export class CharacterService {
                     film.TMDB_ID = res.results[0].id;
                     return film;
                   })
-
                   .flatMap((film: any) => {
                     let filmID = film.TMDB_ID.toString();
                     return this.http.get('https://api.themoviedb.org/3/movie/'+filmID+'/videos?api_key=d2149f1fc326d34e85428a4c3d701aad&language=en-US')

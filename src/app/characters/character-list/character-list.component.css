@@ -18,11 +18,17 @@
   align-items: center;
 }
 
+.load-button{
+  transition: all .5s;
+  opacity:.8;
+  font-size:18px;
+  text-transform: uppercase;
+}
+
 .loading div{
   font-size:24px;
   color:blue;
 }
-
 
 mat-divider{
   margin:10px 0;
