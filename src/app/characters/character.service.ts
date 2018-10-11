@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs/Rx';
 import { Character } from './character';
 import { CHARACTERS } from './mock-characters';
 import { HttpModule } from '@angular/http';
@@ -17,15 +17,13 @@ import 'rxjs/add/observable/forkJoin';
 @Injectable({
   providedIn: 'root',
 })
-
 export class CharacterService {
 
-  const TMDB_path = 'https://api.themoviedb.org/3/search/movie?api_key=d2149f1fc326d34e85428a4c3d701aad&query=';
+  private TMDB_path = 'https://api.themoviedb.org/3/search/movie?api_key=d2149f1fc326d34e85428a4c3d701aad&query=';
 
   constructor(
     private http: HttpClient
   ) {}
-
 
   private handleError(error: HttpErrorResponse) {
 
@@ -42,39 +40,26 @@ export class CharacterService {
         let msg = 'Server Error (${error.status}). Try again later';
       }
     }
-    return of([false]);
+    return Observable.of([false]);
   }
 
-  getCharacters(useWeb:Boolean): Observable<Character[]> {
+  getCharacters(useWeb:Boolean): Observable<any> {
     if(!useWeb){
-      return of(CHARACTERS);
+      return Observable.of(CHARACTERS);
     }else{
       return this.http.get('https://swapi.co/api/people/').pipe(
-        map((res) => res.results),
-        catchError(this.handleError);
-      )
+        map((res: any) => res.results),
+        catchError(this.handleError)
+      );
     }
   }
 
-  /*getFilm(film_url:string){
-    console.log("Getting film: ", film_url);
-    return this.http.get(character.film_url).map((res: any) => {
-      console.log("RES", res);
-      let film = {};
-      film.title = res.title;
-      film.release_date = res.release_date;
-      film.opening_crawl = res.opening_crawl;
-      return film;
-    });
-  }*/
-
-  getCharacterWorld(character_url: string): Observable<any> {
-
+  getCharacter(character_url:string): Observable<any>{
     return this.http.get(character_url)
     .map((res: any) => res)
-    .flatMap((character: Character) => {
+    .flatMap((character: any) => {
      return Observable.forkJoin(
-        of(character),
+        Observable.of(character),
         this.http.get(character.homeworld).map((res: any) => {
           character.homeworld = res.name;
           return character.homeworld;
@@ -83,7 +68,7 @@ export class CharacterService {
           character.films.map((film: any) => {
             return this.http.get(film)
               .map((res: any) => {
-                let theFilm = {};
+                let theFilm: any = {};
                 theFilm.title = res.title;
                 theFilm.release_date = res.release_date;
                 theFilm.opening_crawl = res.opening_crawl;
@@ -121,35 +106,7 @@ export class CharacterService {
         character.films =  _.sortBy( films, 'release_date');
         return character;
       });
-    });
+    })
 
-
-
-
-
-
-/*
-    return this.http.get(url)
-      .map((res: any) => res)
-      .flatMap((character: Character) => {
-        return this.http.get(character.homeworld)
-          .map((res: any) => {
-            let homeworld = res;
-            character.homeworld = homeworld;
-            return character;
-          });
-      });*/
-  }
-
-
-
-  getCharacter(url:string): Observable<Character>{
-    return this.getCharacterWorld(url);
-
-
-    return this.http.get(url).pipe(
-      map((res) => res),
-      catchError(this.handleError);
-    )
   }
 }

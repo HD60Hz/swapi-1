@@ -15,6 +15,7 @@ export class CharacterListComponent implements OnInit {
 
   public characters$: Observable<Character[]>;
   public useWeb:Boolean = false;
+  public loading = false;
 
   constructor(
     private characterService: CharacterService,

@@ -59,7 +59,7 @@ mat-card:hover {
 }
 
 .example-header-image {
-  background-image: url('/assets/imgs/starwars_logo.gif');
+  background-image: url('/SWAPI/assets/imgs/starwars_logo.gif');
   background-size: cover;
   background-position: center;
   /* max-width:0px; */
